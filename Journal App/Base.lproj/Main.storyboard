@@ -52,6 +52,9 @@
                                                 <constraint firstItem="71M-Gk-Kwj" firstAttribute="top" secondItem="sFR-5M-AzW" secondAttribute="top" id="vgx-cm-PaF"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="AKG-m1-hYG" kind="presentation" id="zXb-Lm-AJC"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -66,6 +69,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ni2-Qu-UTN"/>
+                    <connections>
+                        <outlet property="tableView" destination="uw8-Ce-Ook" id="5fm-y6-h3o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -76,11 +82,12 @@
             <objects>
                 <viewController id="AKG-m1-hYG" customClass="NoteViewController" customModule="Journal_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y0g-Bl-KYy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="yCW-eG-zMJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="A67-os-czI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6iw-dy-sbi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
