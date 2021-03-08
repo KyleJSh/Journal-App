@@ -18,13 +18,22 @@ class NotesModel {
     
     var delegate:NotesModelProtocol?
     
+    var listener:ListenerRegistration?
+    
+    deinit {
+        
+        // Unregister database listener
+        listener?.remove()
+        
+    }
+    
     func getNotes() {
         
         // Get a reference to the database
         let db = Firestore.firestore()
         
         // Get all the notes
-        db.collection("notes").getDocuments { (snapshot, error) in
+        self.listener = db.collection("notes").addSnapshotListener({ (snapshot, error) in
             
             // Check for errors
             if error == nil && snapshot != nil {
@@ -36,9 +45,9 @@ class NotesModel {
                     
                     // for dates, convert from TimeStamp to Date
                     let createdAtDate = Timestamp.dateValue(doc["createdAt"] as! Timestamp)
-                        
+                    
                     let lastUpdatedAtDate = Timestamp.dateValue(doc["lastUpdatedAt"] as! Timestamp)
-                        
+                    
                     
                     let n = Note(docId: doc["docId"] as! String, title: doc["title"] as! String, body: doc["body"] as! String, isStarred: doc["isStarred"] as! Bool, createdAt: createdAtDate(), lastUpdatedAt: lastUpdatedAtDate())
                     
@@ -51,7 +60,7 @@ class NotesModel {
                 }
             } // end if/else
         } // end db.collection.getDocuments
-    } // end getNote()
+        )} // end getNote()
     
     func deleteNote(_ n:Note) {
         

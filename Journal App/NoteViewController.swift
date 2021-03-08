@@ -28,6 +28,16 @@ class NoteViewController: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        // clear the fields
+        note = nil
+        titleTextField.text = ""
+        bodyTextView.text = ""
+        
+    }
+    
+    
     @IBAction func deleteTapped(_ sender: Any) {
         
         if self.note != nil {
@@ -44,6 +54,7 @@ class NoteViewController: UIViewController {
         if self.note == nil {
             
             // This is a brand new note
+            
             // Create the note
             let n = Note(docId: UUID().uuidString, title: titleTextField.text ?? "", body: bodyTextView.text ?? "", isStarred: false, createdAt: Date(), lastUpdatedAt: Date())
             

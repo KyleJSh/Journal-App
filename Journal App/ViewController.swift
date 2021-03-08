@@ -39,9 +39,14 @@ class ViewController: UIViewController {
             // set notes and notesmodel properties of the note vc
             notesViewController.note = notes[tableView.indexPathForSelectedRow!.row]
             
-            notesViewController.notesModel = self.notesModel
+            // deselect the selected row so it doesn't interfere with new note creation
             
+            tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: false)
+                        
         }
+        
+        // whether it's a new note or a selected note we still want to pass through the notes model
+        notesViewController.notesModel = self.notesModel
         
     }
 

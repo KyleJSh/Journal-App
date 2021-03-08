@@ -69,7 +69,13 @@
                             <constraint firstItem="uw8-Ce-Ook" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hmH-FF-TcX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ni2-Qu-UTN"/>
+                    <navigationItem key="navigationItem" id="ni2-Qu-UTN">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="56h-gO-Oai">
+                            <connections>
+                                <segue destination="AKG-m1-hYG" kind="presentation" id="itb-hy-Lbs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="uw8-Ce-Ook" id="5fm-y6-h3o"/>
                     </connections>
@@ -172,7 +178,11 @@
             <point key="canvasLocation" x="45" y="67"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="itb-hy-Lbs"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
