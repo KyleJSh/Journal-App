@@ -28,7 +28,22 @@ class ViewController: UIViewController {
         notesModel.getNotes()
         
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let notesViewController = segue.destination as! NoteViewController
+        
+        // if user has selected a row, transition to notesVC
+        
+        if tableView.indexPathForSelectedRow != nil {
+            
+            // set notes and notesmodel properties of the note vc
+            notesViewController.note = notes[tableView.indexPathForSelectedRow!.row]
+            
+            notesViewController.notesModel = self.notesModel
+            
+        }
+        
+    }
 
 }
 

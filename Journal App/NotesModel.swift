@@ -52,4 +52,35 @@ class NotesModel {
             } // end if/else
         } // end db.collection.getDocuments
     } // end getNote()
+    
+    func deleteNote(_ n:Note) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("notes").document(n.docId).delete()
+        
+    }
+    
+    func saveNote(_ n:Note) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("notes").document(n.docId).setData(noteToDictionary(n))
+        
+    }
+    
+    func noteToDictionary(_ n:Note) -> [String:Any] {
+        
+        var dict = [String:Any]()
+        
+        dict["docId"] = n.docId
+        dict["title"] = n.title
+        dict["body"] = n.body
+        dict["createdAt"] = n.createdAt
+        dict["lastUpdatedAt"] = n.lastUpdatedAt
+        dict["isStarred"] = n.isStarred
+        
+        return dict
+    }
+    
 } // class NotesModel
