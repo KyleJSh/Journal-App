@@ -11,13 +11,21 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    private var notesModel = NotesModel()
     private var notes = [Note]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set delegate and datasource for the table
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Set self as delegate for notes model
+        notesModel.delegate = self
+        
+        // Retrieve all notes
+        notesModel.getNotes()
         
     }
 
@@ -38,7 +46,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
-    
-    
-    
+}
+
+extension ViewController: NotesModelProtocol {
+    func notesRetrieved(notes: [Note]) {
+        
+        // Set notes property and refresh tableview
+        self.notes = notes
+        
+        tableView.reloadData()
+    }
 }
