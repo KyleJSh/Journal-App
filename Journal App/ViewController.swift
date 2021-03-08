@@ -43,6 +43,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath)
         
         // TODO: Customize cell
+        let titleLabel = cell.viewWithTag(1) as? UILabel
+        
+        // pass in title text
+        titleLabel?.text = notes[indexPath.row].title
+        
+        let bodyLabel = cell.viewWithTag(2) as? UILabel
+        
+        // pass in body text
+        bodyLabel?.text = notes[indexPath.row].body
         
         return cell
     }

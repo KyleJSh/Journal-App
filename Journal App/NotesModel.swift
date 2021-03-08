@@ -45,14 +45,11 @@ class NotesModel {
                     notes.append(n)
                     
                 }
-                
-                // Call the delegate
-                self.delegate?.notesRetrieved(notes: notes)
-                
+                // Call the delegate and pass back the notes in the main thread
+                DispatchQueue.main.async {
+                    self.delegate?.notesRetrieved(notes: notes)
+                }
             } // end if/else
-            
         } // end db.collection.getDocuments
-        
     } // end getNote()
-    
 } // class NotesModel
