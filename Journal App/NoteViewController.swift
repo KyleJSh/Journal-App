@@ -9,6 +9,8 @@ import UIKit
 
 class NoteViewController: UIViewController {
     
+    @IBOutlet weak var starButton: UIButton!
+    
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var bodyTextView: UITextView!
@@ -18,11 +20,13 @@ class NoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if note != nil {
             
             titleTextField.text = note?.title
             bodyTextView.text = note?.body
+            
+            setStarButton()
             
         }
         
@@ -37,6 +41,11 @@ class NoteViewController: UIViewController {
         
     }
     
+    func setStarButton() {
+        
+        starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        
+    }
     
     @IBAction func deleteTapped(_ sender: Any) {
         
@@ -73,17 +82,10 @@ class NoteViewController: UIViewController {
         
         // dismiss modal popup when saved
         dismiss(animated: true, completion: nil)
-
+        
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func starTapped(_ sender: Any) {
     }
-    */
-
+    
 }

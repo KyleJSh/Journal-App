@@ -122,7 +122,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQQ-3G-bpS">
-                                                <rect key="frame" x="75" y="0.0" width="299" height="40"/>
+                                                <rect key="frame" x="75" y="0.0" width="247" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="U7X-JU-PG1"/>
@@ -133,6 +133,14 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="saveTapped:" destination="AKG-m1-hYG" eventType="touchUpInside" id="a7k-Dl-JOa"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5g-1I-kEO" userLabel="Star">
+                                                <rect key="frame" x="352" y="0.0" width="22" height="40"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="star" catalog="system"/>
+                                                <connections>
+                                                    <action selector="starTapped:" destination="AKG-m1-hYG" eventType="touchUpInside" id="5Ig-NG-2cn"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -152,6 +160,7 @@
                     <navigationItem key="navigationItem" id="A67-os-czI"/>
                     <connections>
                         <outlet property="bodyTextView" destination="hjr-ge-gzt" id="FER-HM-8hp"/>
+                        <outlet property="starButton" destination="M5g-1I-kEO" id="wn0-dG-IKU"/>
                         <outlet property="titleTextField" destination="s3t-gS-zJG" id="UEt-jx-Vlo"/>
                     </connections>
                 </viewController>
@@ -183,6 +192,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
