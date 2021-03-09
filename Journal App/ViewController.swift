@@ -9,6 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var isStarFiltered = false
+    
+    @IBOutlet weak var starButton: UIBarButtonItem!
+    
     @IBOutlet weak var tableView: UITableView!
     
     private var notesModel = NotesModel()
@@ -24,8 +28,16 @@ class ViewController: UIViewController {
         // Set self as delegate for notes model
         notesModel.delegate = self
         
-        // Retrieve all notes
-        notesModel.getNotes()
+        // Set the status of the star filter button
+        setStarFilterButton()
+        
+        // Retrieve all notes according to the filter status
+        if isStarFiltered {
+            notesModel.getNotes(true)
+        }
+        else {
+            notesModel.getNotes()
+        }
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,6 +62,31 @@ class ViewController: UIViewController {
         
     }
 
+    func setStarFilterButton() {
+        
+        let imageName = isStarFiltered ? "star.fill" : "star"
+        starButton.image = UIImage(systemName: imageName)
+        
+    }
+    
+    @IBAction func starFilterTapped(_ sender: Any) {
+        
+        // Toggle the star filter status
+        isStarFiltered.toggle()
+        
+        // Run the query
+        if isStarFiltered {
+            notesModel.getNotes(true)
+        }
+        else {
+            notesModel.getNotes()
+        }
+        
+        // Update the star button
+        setStarFilterButton()
+        
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
@@ -75,6 +112,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
+    
+    
+    
 }
 
 extension ViewController: NotesModelProtocol {

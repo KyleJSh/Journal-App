@@ -70,6 +70,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ni2-Qu-UTN">
+                        <barButtonItem key="leftBarButtonItem" image="star" catalog="system" id="9Na-fR-92i" userLabel="Star Filter Button">
+                            <connections>
+                                <action selector="starFilterTapped:" destination="BYZ-38-t0r" id="vsO-yE-nOy"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="56h-gO-Oai">
                             <connections>
                                 <segue destination="AKG-m1-hYG" kind="presentation" id="itb-hy-Lbs"/>
@@ -77,6 +82,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="starButton" destination="9Na-fR-92i" id="Jj7-b2-Nbh"/>
                         <outlet property="tableView" destination="uw8-Ce-Ook" id="5fm-y6-h3o"/>
                     </connections>
                 </viewController>

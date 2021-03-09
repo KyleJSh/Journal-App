@@ -23,13 +23,20 @@ class NoteViewController: UIViewController {
         
         if note != nil {
             
+            // user is viewing an existing note, so populate the fields
             titleTextField.text = note?.title
             bodyTextView.text = note?.body
             
             setStarButton()
             
         }
-        
+        else {
+            // Note property is nil, so create a new note
+            // Create the note
+            let n = Note(docId: UUID().uuidString, title: titleTextField.text ?? "", body: bodyTextView.text ?? "", isStarred: false, createdAt: Date(), lastUpdatedAt: Date())
+            
+            self.note = n
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -60,22 +67,10 @@ class NoteViewController: UIViewController {
     
     @IBAction func saveTapped(_ sender: Any) {
         
-        if self.note == nil {
-            
-            // This is a brand new note
-            
-            // Create the note
-            let n = Note(docId: UUID().uuidString, title: titleTextField.text ?? "", body: bodyTextView.text ?? "", isStarred: false, createdAt: Date(), lastUpdatedAt: Date())
-            
-            self.note = n
-            
-        }
-        else {
-            // This is an update to existing note
-            self.note?.title = titleTextField.text ?? ""
-            self.note?.body = bodyTextView.text ?? ""
-            self.note?.lastUpdatedAt = Date()
-        }
+        // This is an update to existing note
+        self.note?.title = titleTextField.text ?? ""
+        self.note?.body = bodyTextView.text ?? ""
+        self.note?.lastUpdatedAt = Date()
         
         // Send it to the notes model
         self.notesModel?.saveNote(self.note!)
@@ -86,6 +81,16 @@ class NoteViewController: UIViewController {
     }
     
     @IBAction func starTapped(_ sender: Any) {
+        
+        // Change the property in the note
+        note?.isStarred.toggle()
+        
+        // Update the database
+        notesModel?.updateFavStatus(note!.docId, note!.isStarred)
+        
+        // Update the button
+        setStarButton()
+        
     }
     
 }
