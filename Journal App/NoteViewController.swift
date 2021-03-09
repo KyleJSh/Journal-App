@@ -5,6 +5,7 @@
 //  Created by Kyle Sherrington on 2021-03-07.
 //
 
+
 import UIKit
 
 class NoteViewController: UIViewController {
@@ -40,17 +41,17 @@ class NoteViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
         // clear the fields
         note = nil
         titleTextField.text = ""
         bodyTextView.text = ""
-        
     }
     
     func setStarButton() {
         
-        starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        let imageName = note!.isStarred ? "star.fill" : "star"
+        
+        starButton.setImage(UIImage(systemName: imageName), for: .normal)
         
     }
     
