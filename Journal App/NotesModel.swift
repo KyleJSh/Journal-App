@@ -5,12 +5,10 @@
 //  Created by Kyle Sherrington on 2021-03-07.
 //
 
-
 import Foundation
 import Firebase
 
 protocol NotesModelProtocol {
-    
     func notesRetrieved(notes:[Note])
 }
 
@@ -21,10 +19,8 @@ class NotesModel {
     var listener:ListenerRegistration?
     
     deinit {
-        
         // Unregister database listener
         listener?.remove()
-        
     }
     
     func getNotes(_ starredOnly:Bool = false) {
@@ -35,6 +31,7 @@ class NotesModel {
         // Get a reference to the database
         let db = Firestore.firestore()
         
+        // create new query
         var query:Query = db.collection("notes")
         
         // If we're only looking for starred notes, update the query

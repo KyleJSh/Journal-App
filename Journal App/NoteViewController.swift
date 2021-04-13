@@ -5,15 +5,12 @@
 //  Created by Kyle Sherrington on 2021-03-07.
 //
 
-
 import UIKit
 
 class NoteViewController: UIViewController {
     
     @IBOutlet weak var starButton: UIButton!
-    
     @IBOutlet weak var titleTextField: UITextField!
-    
     @IBOutlet weak var bodyTextView: UITextView!
     
     var note:Note?
@@ -28,12 +25,12 @@ class NoteViewController: UIViewController {
             titleTextField.text = note?.title
             bodyTextView.text = note?.body
             
+            // set star to either "star" or "star.fill"
             setStarButton()
             
         }
         else {
             // Note property is nil, so create a new note
-            // Create the note
             let n = Note(docId: UUID().uuidString, title: titleTextField.text ?? "", body: bodyTextView.text ?? "", isStarred: false, createdAt: Date(), lastUpdatedAt: Date())
             
             self.note = n

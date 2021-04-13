@@ -9,14 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var isStarFiltered = false
-    
     @IBOutlet weak var starButton: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
     
     private var notesModel = NotesModel()
     private var notes = [Note]()
+    private var isStarFiltered = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +50,6 @@ class ViewController: UIViewController {
             notesViewController.note = notes[tableView.indexPathForSelectedRow!.row]
             
             // deselect the selected row so it doesn't interfere with new note creation
-            
             tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: false)
                         
         }
